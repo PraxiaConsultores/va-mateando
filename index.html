@@ -526,6 +526,23 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Error message */
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: var(--color-sale);
+            font-size: 1.1rem;
+        }
+        
+        /* Debug info */
+        .debug-info {
+            font-size: 0.8rem;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
         
         /* Responsive Design */
         @media (max-width: 900px) {
@@ -646,6 +663,7 @@
                 <div class="spinner"></div>
             </div>
         </div>
+        <div id="debug-info" class="debug-info"></div>
     </section>
     
     <!-- Categories -->
@@ -729,20 +747,29 @@
     </footer>
 
     <script>
+        // ID de tu hoja de cálculo
+        const spreadsheetId = '1SkRQ-15NPlXyOzuh4lhiZMlpKO41MNL_tdfzQXIPk7w';
+        
+        // Lista de posibles nombres de hoja (intentará en este orden)
+        const possibleSheetNames = ['Sheet1', 'Hoja 1', 'Productos', 'Datos', 'Hoja de cálculo 1'];
+        
         // Función para cargar productos desde Google Sheets
-        function loadProductsFromGoogleSheets() {
-            // ID de tu hoja de cálculo
-            const spreadsheetId = '1SkRQ-15NPlXyOzuh4lhiZMlpKO41MNL_tdfzQXIPk7w';
-            // Hoja que contiene los datos (generalmente 'Sheet1' u 'Hoja 1')
-            const sheetName = 'Sheet1';
+        function loadProductsFromGoogleSheets(sheetIndex = 0) {
+            // Obtener el nombre de la hoja a intentar
+            const sheetName = possibleSheetNames[sheetIndex];
             
             // Construir la URL para obtener los datos en formato JSON
             const url = `https://opensheet.vercel.app/${spreadsheetId}/${sheetName}`;
+            
+            // Mostrar información de depuración
+            document.getElementById('debug-info').innerText = `Intentando cargar desde: ${sheetName}`;
+            document.getElementById('debug-info').style.display = 'block';
             
             // Mostrar el spinner de carga
             document.getElementById('products-container').innerHTML = `
                 <div class="loader">
                     <div class="spinner"></div>
+                    <p style="margin-left: 15px;">Cargando productos desde: ${sheetName}</p>
                 </div>
             `;
             
@@ -750,24 +777,46 @@
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Error al cargar los datos');
+                        // Si hay un error, intentar con el siguiente nombre de hoja
+                        if (sheetIndex < possibleSheetNames.length - 1) {
+                            return loadProductsFromGoogleSheets(sheetIndex + 1);
+                        } else {
+                            throw new Error(`No se pudo cargar la hoja. Intentó con: ${possibleSheetNames.join(', ')}`);
+                        }
                     }
                     return response.json();
                 })
                 .then(data => {
-                    // Procesar los datos y generar el HTML
-                    displayProducts(data);
+                    // Ocultar información de depuración
+                    document.getElementById('debug-info').style.display = 'none';
+                    
+                    // Verificar si los datos tienen contenido
+                    if (data && data.length > 0) {
+                        // Procesar los datos y generar el HTML
+                        displayProducts(data, sheetName);
+                    } else {
+                        // Si no hay datos, intentar con el siguiente nombre
+                        if (sheetIndex < possibleSheetNames.length - 1) {
+                            loadProductsFromGoogleSheets(sheetIndex + 1);
+                        } else {
+                            throw new Error('La hoja de cálculo está vacía o no contiene datos válidos.');
+                        }
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     document.getElementById('products-container').innerHTML = `
-                        <p>Error al cargar los productos. Por favor, intenta nuevamente más tarde.</p>
+                        <div class="error-message">
+                            <p>Error al cargar los productos: ${error.message}</p>
+                            <p>Por favor, verifica que la hoja de cálculo esté publicada y sea accesible.</p>
+                            <p>URL intentada: ${url}</p>
+                        </div>
                     `;
                 });
         }
         
         // Función para mostrar los productos en la página
-        function displayProducts(products) {
+        function displayProducts(products, sheetName) {
             const productsContainer = document.getElementById('products-container');
             
             // Limpiar el contenedor
@@ -775,18 +824,27 @@
             
             // Verificar si hay productos
             if (products.length === 0) {
-                productsContainer.innerHTML = '<p>No hay productos disponibles en este momento.</p>';
+                productsContainer.innerHTML = '<p class="error-message">No hay productos disponibles en este momento.</p>';
                 return;
             }
             
+            // Contador de productos mostrados
+            let productsDisplayed = 0;
+            
             // Crear HTML para cada producto
             products.forEach(product => {
-                // Obtener los valores de cada columna
-                const name = product['Nombre del producto'] || 'Producto sin nombre';
-                const price = parseFloat(product['Precio']) || 0;
-                const description = product['Descripción'] || '';
-                const imageUrl = product['Enlace de imagen'] || 'https://via.placeholder.com/300x300?text=Imagen+no+disponible';
-                const stock = parseInt(product['Stock disponible']) || 0;
+                // Obtener los valores de cada columna (con diferentes posibles nombres de columnas)
+                const name = product['Nombre del producto'] || product['Nombre'] || product['Producto'] || 'Producto sin nombre';
+                const price = parseFloat(product['Precio']) || parseFloat(product['Precio ($)']) || 0;
+                const description = product['Descripción'] || product['Descripcion'] || '';
+                const imageUrl = product['Enlace de imagen'] || product['Imagen'] || product['URL de imagen'] || 'https://via.placeholder.com/300x300?text=Imagen+no+disponible';
+                const stock = parseInt(product['Stock disponible']) || parseInt(product['Stock']) || 0;
+                
+                // Validar datos mínimos para mostrar el producto
+                if (!name || price === 0) {
+                    console.warn('Producto omitido por falta de datos:', product);
+                    return; // Saltar este producto
+                }
                 
                 // Formatear el precio
                 const formattedPrice = new Intl.NumberFormat('es-AR', {
@@ -819,7 +877,7 @@
                 productCard.innerHTML = `
                     <div class="product-image">
                         ${badgeHTML}
-                        <img src="${imageUrl}" alt="${name}" loading="lazy">
+                        <img src="${imageUrl}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300?text=Error+al+cargar+imagen'">
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${name}</h3>
@@ -834,11 +892,24 @@
                 
                 // Agregar el producto al contenedor
                 productsContainer.appendChild(productCard);
+                productsDisplayed++;
             });
+            
+            // Si no se mostró ningún producto
+            if (productsDisplayed === 0) {
+                productsContainer.innerHTML = `
+                    <div class="error-message">
+                        <p>No se pudieron cargar los productos. Verifica que las columnas en la hoja "${sheetName}" tengan los nombres correctos.</p>
+                        <p>Las columnas necesarias son: "Nombre del producto" y "Precio".</p>
+                    </div>
+                `;
+            }
         }
         
         // Cargar los productos cuando la página esté lista
-        document.addEventListener('DOMContentLoaded', loadProductsFromGoogleSheets);
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProductsFromGoogleSheets();
+        });
     </script>
 </body>
 </html>
