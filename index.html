@@ -511,6 +511,8 @@
             justify-content: center;
             align-items: center;
             padding: 40px 0;
+            gap: 15px;
+            color: #555;
         }
         
         .spinner {
@@ -542,6 +544,7 @@
             text-align: center;
             margin-top: 10px;
             display: none;
+            padding: 10px;
         }
         
         /* Logo image */
@@ -608,20 +611,20 @@
             
             .newsletter-form {
                 flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            width: 90%;
-            max-width: 350px;
-        }
+                align-items: center;
+                gap: 15px;
+                width: 90%;
+                max-width: 350px;
+            }
 
-        .newsletter-form input {
-            width: 100%;
-        }
+            .newsletter-form input {
+                width: 100%;
+            }
 
-        .newsletter-form button {
-            width: 100%;
-            padding: 12px;
-        }
+            .newsletter-form button {
+                width: 100%;
+                padding: 12px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -663,14 +666,14 @@
         <div class="main-header">
             <div class="logo-container">
                 <a href="#">
-                    <img src="https://drive.google.com/uc?export=view&id=18zHguJr7LBkO4Jh6moTCu_x-AGTkFmVX" alt="Vamateando" class="logo-img">
+                    <img src="https://drive.google.com/uc?export=view&id=18zHguJr7LBkO4Jh6moTCu_x-AGTkFmVX" alt="Vamateando" class="logo-img" loading="lazy" referrerpolicy="no-referrer">
                 </a>
             </div>
             
             <div class="header-icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#"><i class="fas fa-user"></i></a>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Buscar</span></a>
+                <a href="#"><i class="fas fa-user" aria-hidden="true"></i><span class="sr-only">Cuenta</span></a>
+                <a href="#"><i class="fas fa-shopping-cart" aria-hidden="true"></i><span class="sr-only">Carrito</span></a>
             </div>
         </div>
         
@@ -709,7 +712,7 @@
     <section class="newsletter">
         <h2>¡Sumate a la comunidad Vamateando!</h2>
         <p>Suscribite para recibir descuentos exclusivos, novedades y promociones especiales.</p>
-        <form class="newsletter-form">
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
             <input type="email" placeholder="Tu email" required>
             <input type="text" placeholder="Tu nombre">
             <button type="submit">SUSCRIBIRME</button>
@@ -724,6 +727,7 @@
         <div class="products-grid" id="products-container">
             <div class="loader">
                 <div class="spinner"></div>
+                <span>Cargando productos...</span>
             </div>
         </div>
         <div id="debug-info" class="debug-info"></div>
@@ -735,41 +739,41 @@
         
         <div class="categories-grid">
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Mates">
+                <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Mates" loading="lazy">
                 <div class="category-title">MATES</div>
             </div>
             
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1620916566393-548a8d7a2eaf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Bombillas">
+                <img src="https://images.unsplash.com/photo-1620916566393-548a8d7a2eaf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Bombillas" loading="lazy">
                 <div class="category-title">BOMBILLAS</div>
             </div>
             
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Materas">
+                <img src="https://images.unsplash.com/photo-1590333748338-d629e4564ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Materas" loading="lazy">
                 <div class="category-title">MATERAS</div>
             </div>
             
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1588854337236-6883f51c7d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Personalizados">
+                <img src="https://images.unsplash.com/photo-1588854337236-6883f51c7d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Personalizados" loading="lazy">
                 <div class="category-title">PERSONALIZADOS</div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Modal -->
-    <div id="faq-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>PREGUNTAS FRECUENTES</h2>
+    <div id="faq-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="faq-title">
+            <span class="close" aria-label="Cerrar">&times;</span>
+            <h2 id="faq-title">PREGUNTAS FRECUENTES</h2>
             <div id="faq-content"></div>
         </div>
     </div>
 
     <!-- Care Modal -->
-    <div id="care-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>CURADO Y CUIDADO DE MATES</h2>
+    <div id="care-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-labelledby="care-title">
+            <span class="close" aria-label="Cerrar">&times;</span>
+            <h2 id="care-title">CURADO Y CUIDADO DE MATES</h2>
             <div id="care-content"></div>
         </div>
     </div>
@@ -781,8 +785,8 @@
                 <h3>VA<span>MATEANDO</span></h3>
                 <p>Mates artesanales de alta calidad, elaborados con maderas nobles y técnicas tradicionales que garantizan durabilidad y belleza.</p>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com/vamateando/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/5491138622851" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/vamateando/" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/5491138622851" target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                 </div>
             </div>
             
@@ -810,287 +814,313 @@
             <div class="footer-column">
                 <h3>CONTACTANOS</h3>
                 <ul class="contact-info">
-                    <li><i class="fas fa-phone"></i> +54 9 11 3862-2851</li>
-                    <li><i class="fab fa-whatsapp"></i> +54 9 11 3862-2851</li>
-                    <li><i class="fas fa-envelope"></i> info@vamateando.com.ar</li>
+                    <li><i class="fas fa-phone" aria-hidden="true"></i> +54 9 11 3862-2851</li>
+                    <li><i class="fab fa-whatsapp" aria-hidden="true"></i> +54 9 11 3862-2851</li>
+                    <li><i class="fas fa-envelope" aria-hidden="true"></i> info@vamateando.com.ar</li>
                 </ul>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 VAMATEANDO - Todos los derechos reservados. Diseñado con pasión por mates argentinos.</p>
+            <p>&copy; <span id="year"></span> VAMATEANDO - Todos los derechos reservados. Diseñado con pasión por mates argentinos.</p>
         </div>
     </footer>
 
     <script>
-        // ID de tu hoja de cálculo
+        // ========= CONFIG =========
         const spreadsheetId = '1SkRQ-15NPlXyOzuh4lhiZMlpKO41MNL_tdfzQXIPk7w';
-        
-        // Lista de posibles nombres de hoja (intentará en este orden)
-        const possibleSheetNames = ['Sheet1', 'Hoja 1', 'Productos', 'Datos', 'Hoja de cálculo 1'];
-        
-        // Función para convertir enlaces de Google Drive a enlaces directos
-        function convertGoogleDriveLink(url) {
-            if (!url) return 'https://via.placeholder.com/300x300?text=Imagen+no+disponible';
-            
-            // Si ya es un enlace directo o no es de Google Drive, devolverlo tal cual
-            if (url.includes('via.placeholder.com') || !url.includes('drive.google.com')) {
-                return url;
+        const possibleSheetNames = [
+            'Productos', 'Sheet1', 'Hoja 1', 'Hoja1', 'Datos', 'Catálogo', 'Catalogo', 'Stock', 'Lista'
+        ];
+
+        // Column aliases (permite varios encabezados comunes)
+        const COLS = {
+            name: ['Nombre del producto','Nombre','Producto','Título','Titulo'],
+            price: ['Precio','Precio ($)','Precio ARS','Precio lista'],
+            description: ['Descripción','Descripcion','Detalle','Descripción corta'],
+            image: ['Enlace de imagen','Imagen','URL de imagen','Foto','Link imagen','Imagen URL'],
+            stock: ['Stock disponible','Stock','Disponibilidad','Cantidad']
+        };
+
+        // ========= HELPERS =========
+        function byAlias(obj, keys, fallback = '') {
+            for (const k of keys) {
+                if (obj[k] !== undefined && obj[k] !== '') return obj[k];
             }
-            
-            // Convertir enlaces de Google Drive a enlaces directos
-            if (url.includes('/file/d/')) {
-                const fileId = url.match(/\/file\/d\/([^\/]+)/)[1];
-                return `https://drive.google.com/uc?export=view&id=${fileId}`;
-            }
-            
-            return url;
+            return fallback;
         }
 
-        // Función para cargar productos desde Google Sheets
-        function loadProductsFromGoogleSheets(sheetIndex = 0) {
-            // Obtener el nombre de la hoja a intentar
-            const sheetName = possibleSheetNames[sheetIndex];
-            
-            // Construir la URL para obtener los datos en formato JSON
-            const url = `https://opensheet.vercel.app/${spreadsheetId}/${sheetName}`;
-            
-            // Mostrar información de depuración
-            document.getElementById('debug-info').innerText = `Intentando cargar desde: ${sheetName}`;
-            document.getElementById('debug-info').style.display = 'block';
-            
-            // Mostrar el spinner de carga
-            document.getElementById('products-container').innerHTML = `
+        function parsePriceRaw(value) {
+            if (value === undefined || value === null) return NaN;
+            const s = String(value)
+                .trim()
+                .replace(/\s+/g, '')
+                .replace(/\./g, '')   // quita miles
+                .replace(',', '.')    // coma -> punto
+                .replace(/[^0-9.]/g, '');
+            const num = parseFloat(s);
+            return Number.isFinite(num) ? num : NaN;
+        }
+
+        function formatARS(value) {
+            return new Intl.NumberFormat('es-AR', {
+                style: 'currency',
+                currency: 'ARS',
+                minimumFractionDigits: 2
+            }).format(value);
+        }
+
+        // Convierte distintos formatos de Drive a un link directo embebible
+        function convertGoogleDriveLink(url) {
+            if (!url) return 'https://via.placeholder.com/600x600?text=Imagen+no+disponible';
+
+            try {
+                // Si ya es un link directo o de otro host, lo dejamos
+                if (!url.includes('drive.google.com')) return url;
+
+                // Ya en formato directo
+                if (url.includes('uc?export=view') || url.includes('thumbnail?id=')) {
+                    return url;
+                }
+
+                // Extrae id por distintos patrones
+                let id = null;
+
+                // /file/d/ID/...
+                const m1 = url.match(/\/file\/d\/([^/]+)/);
+                if (m1 && m1[1]) id = m1[1];
+
+                // ?id=ID
+                if (!id) {
+                    const u = new URL(url);
+                    const qid = u.searchParams.get('id');
+                    if (qid) id = qid;
+                }
+
+                // open?id=ID (ya capturado arriba), o variantes
+                // Si no se logró id, devolvemos placeholder
+                if (!id) return 'https://via.placeholder.com/600x600?text=Imagen+no+disponible';
+
+                // Preferimos uc?export=view porque no suele romper CORS para <img>
+                return `https://drive.google.com/uc?export=view&id=${id}`;
+            } catch (e) {
+                return 'https://via.placeholder.com/600x600?text=Imagen+no+disponible';
+            }
+        }
+
+        function showDebug(msg, append = false) {
+            const el = document.getElementById('debug-info');
+            el.style.display = 'block';
+            el.textContent = append ? (el.textContent + ' | ' + msg) : msg;
+        }
+
+        // ========= SHEETS FETCH =========
+        async function fetchSheetJSON(sheetName) {
+            const url = `https://opensheet.vercel.app/${spreadsheetId}/${encodeURIComponent(sheetName)}`;
+            const res = await fetch(url, { cache: 'no-store' });
+            if (!res.ok) throw new Error(`HTTP ${res.status} al leer ${sheetName}`);
+            return res.json();
+        }
+
+        async function loadProductsFromGoogleSheets() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = `
                 <div class="loader">
                     <div class="spinner"></div>
-                    <p style="margin-left: 15px;">Cargando productos desde: ${sheetName}</p>
+                    <span>Conectando con Google Sheets...</span>
                 </div>
             `;
-            
-            // Hacer la petición a la API
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        // Si hay un error, intentar con el siguiente nombre de hoja
-                        if (sheetIndex < possibleSheetNames.length - 1) {
-                            return loadProductsFromGoogleSheets(sheetIndex + 1);
-                        } else {
-                            throw new Error(`No se pudo cargar la hoja. Intentó con: ${possibleSheetNames.join(', ')}`);
-                        }
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Ocultar información de depuración
-                    document.getElementById('debug-info').style.display = 'none';
-                    
-                    // Verificar si los datos tienen contenido
-                    if (data && data.length > 0) {
-                        // Procesar los datos y generar el HTML
-                        displayProducts(data, sheetName);
+
+            for (let i = 0; i < possibleSheetNames.length; i++) {
+                const name = possibleSheetNames[i];
+                try {
+                    showDebug(`Intentando hoja: ${name}`);
+                    const data = await fetchSheetJSON(name);
+                    if (Array.isArray(data) && data.length > 0) {
+                        showDebug(`OK: ${name} (${data.length} filas)`);
+                        displayProducts(data, name);
+                        return;
                     } else {
-                        // Si no hay datos, intentar con el siguiente nombre
-                        if (sheetIndex < possibleSheetNames.length - 1) {
-                            loadProductsFromGoogleSheets(sheetIndex + 1);
-                        } else {
-                            throw new Error('La hoja de cálculo está vacía o no contiene datos válidos.');
-                        }
+                        showDebug(`Hoja ${name} sin datos`);
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    document.getElementById('products-container').innerHTML = `
-                        <div class="error-message">
-                            <p>Error al cargar los productos: ${error.message}</p>
-                            <p>Por favor, verifica que la hoja de cálculo esté publicada y sea accesible.</p>
-                        </div>
-                    `;
-                });
+                } catch (err) {
+                    showDebug(`Fallo en ${name}: ${err.message}`, true);
+                }
+            }
+
+            container.innerHTML = `
+                <div class="error-message">
+                    <p>No se pudieron cargar los productos desde Google Sheets.</p>
+                    <p>Verificá: (1) que el documento esté <strong>publicado</strong> o con acceso público, (2) el <strong>ID</strong> del Sheet y (3) el <strong>nombre de la pestaña</strong>.</p>
+                </div>
+            `;
         }
-        
-        // Función para mostrar los productos en la página
+
+        // ========= RENDER =========
         function displayProducts(products, sheetName) {
             const productsContainer = document.getElementById('products-container');
-            
-            // Limpiar el contenedor
             productsContainer.innerHTML = '';
-            
-            // Verificar si hay productos
-            if (products.length === 0) {
-                productsContainer.innerHTML = '<p class="error-message">No hay productos disponibles en este momento.</p>';
-                return;
-            }
-            
-            // Contador de productos mostrados
-            let productsDisplayed = 0;
-            
-            // Crear HTML para cada producto
-            products.forEach(product => {
-                // Obtener los valores de cada columna (con diferentes posibles nombres de columnas)
-                const name = product['Nombre del producto'] || product['Nombre'] || product['Producto'] || 'Producto sin nombre';
-                const price = parseFloat(product['Precio']) || parseFloat(product['Precio ($)']) || 0;
-                const description = product['Descripción'] || product['Descripcion'] || '';
-                const imageUrl = convertGoogleDriveLink(product['Enlace de imagen'] || product['Imagen'] || product['URL de imagen'] || '');
-                const stock = parseInt(product['Stock disponible']) || parseInt(product['Stock']) || 0;
-                
-                // Validar datos mínimos para mostrar el producto
-                if (!name || price === 0) {
-                    console.warn('Producto omitido por falta de datos:', product);
-                    return; // Saltar este producto
+
+            let shown = 0;
+
+            products.forEach((row) => {
+                const name = byAlias(row, COLS.name, '').toString().trim();
+                const priceRaw = byAlias(row, COLS.price, '');
+                const desc = byAlias(row, COLS.description, '');
+                const imageUrlRaw = byAlias(row, COLS.image, '');
+                const stockRaw = byAlias(row, COLS.stock, '');
+
+                const price = parsePriceRaw(priceRaw);
+                const stock = parseInt(String(stockRaw).replace(/[^\d-]/g,''), 10);
+                const imageUrl = convertGoogleDriveLink(imageUrlRaw);
+
+                // Datos mínimos
+                if (!name || !Number.isFinite(price)) {
+                    console.warn('Producto omitido por datos insuficientes:', row);
+                    return;
                 }
-                
-                // Formatear el precio
-                const formattedPrice = new Intl.NumberFormat('es-AR', {
-                    style: 'currency',
-                    currency: 'ARS',
-                    minimumFractionDigits: 2
-                }).format(price);
-                
-                // Calcular precio con descuento por transferencia (10% de descuento)
+
+                const formattedPrice = formatARS(price);
                 const discountPrice = price * 0.9;
-                const formattedDiscountPrice = new Intl.NumberFormat('es-AR', {
-                    style: 'currency',
-                    currency: 'ARS',
-                    minimumFractionDigits: 2
-                }).format(discountPrice);
-                
-                // Crear elemento de producto
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                
-                // Determinar etiqueta según disponibilidad
+                const formattedDiscount = formatARS(discountPrice);
+
+                // Etiquetas de stock
                 let badgeHTML = '';
-                if (stock <= 0) {
-                    badgeHTML = '<div class="sale-badge">SIN STOCK</div>';
-                } else if (stock < 5) {
-                    badgeHTML = `<div class="stock-badge">ÚLTIMAS ${stock}</div>`;
+                if (Number.isFinite(stock)) {
+                    if (stock <= 0) {
+                        badgeHTML = '<div class="sale-badge">SIN STOCK</div>';
+                    } else if (stock < 5) {
+                        badgeHTML = `<div class="stock-badge">ÚLTIMAS ${stock}</div>`;
+                    }
                 }
-                
-                // Construir el HTML del producto
-                productCard.innerHTML = `
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
                     <div class="product-image">
                         ${badgeHTML}
-                        <img src="${imageUrl}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300?text=Error+al+cargar+imagen'">
+                        <img src="${imageUrl}" alt="${escapeHtml(name)}" loading="lazy" referrerpolicy="no-referrer"
+                            onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=Error+al+cargar+imagen'">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">${name}</h3>
-                        <p class="product-description">${description}</p>
+                        <h3 class="product-title">${escapeHtml(name)}</h3>
+                        <p class="product-description">${escapeHtml(desc)}</p>
                         <div class="product-price">
                             <span class="current-price">${formattedPrice}</span>
                         </div>
-                        <p class="payment-option">${formattedDiscountPrice} con Depósito/Transferencia</p>
+                        <p class="payment-option">${formattedDiscount} con Depósito/Transferencia</p>
                         <span class="discount-badge">10% de descuento pagando con Depósito/Transferencia</span>
                     </div>
                 `;
-                
-                // Agregar el producto al contenedor
-                productsContainer.appendChild(productCard);
-                productsDisplayed++;
+                productsContainer.appendChild(card);
+                shown++;
             });
-            
-            // Si no se mostró ningún producto
-            if (productsDisplayed === 0) {
+
+            if (shown === 0) {
                 productsContainer.innerHTML = `
                     <div class="error-message">
-                        <p>No se pudieron cargar los productos. Verifica que las columnas en la hoja "${sheetName}" tengan los nombres correctos.</p>
-                        <p>Las columnas necesarias son: "Nombre del producto" y "Precio".</p>
+                        <p>No se encontraron productos válidos en la hoja <strong>${escapeHtml(sheetName)}</strong>.</p>
+                        <p>Asegurate de tener columnas llamadas al menos: <em>Nombre</em>, <em>Precio</em>, <em>Imagen</em> (link público) y opcionalmente <em>Descripción</em>, <em>Stock</em>.</p>
                     </div>
                 `;
             }
         }
 
-        // Función para cargar contenido desde Google Docs
-        async function loadGoogleDocContent(docId, elementId) {
-            try {
-                // Usar un proxy CORS para evitar problemas
-                const response = await fetch(`https://corsproxy.io/?https://docs.google.com/document/d/${docId}/export?format=txt`);
-                
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar el documento');
-                }
-                
-                const content = await response.text();
-                document.getElementById(elementId).innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${content}</pre>`;
-            } catch (error) {
-                console.error('Error al cargar el documento:', error);
-                document.getElementById(elementId).innerHTML = `<p>Error al cargar el contenido. Por favor, intenta nuevamente más tarde.</p>`;
-            }
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
         }
 
-        // Función para mostrar modales
+        // ========= GOOGLE DOCS (FAQ / CUIDADO) =========
+        async function loadGoogleDocContent(docId, elementId) {
+            const target = document.getElementById(elementId);
+            const urls = [
+                // Export directo
+                `https://docs.google.com/document/d/${docId}/export?format=txt`,
+                // Fallback via proxy CORS
+                `https://corsproxy.io/?https://docs.google.com/document/d/${docId}/export?format=txt`,
+                // Fallback via text fetcher
+                `https://r.jina.ai/http://docs.google.com/document/d/${docId}/export?format=txt`
+            ];
+
+            for (const u of urls) {
+                try {
+                    const res = await fetch(u, { cache: 'no-store' });
+                    if (!res.ok) continue;
+                    const txt = await res.text();
+                    target.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit; line-height:1.5">${escapeHtml(txt)}</pre>`;
+                    return;
+                } catch (e) {
+                    // sigue al próximo
+                }
+            }
+            target.innerHTML = `<p>Error al cargar el contenido. Por favor, intenta nuevamente más tarde.</p>`;
+        }
+
+        // ========= MODALES =========
         function setupModals() {
-            // FAQ Modal
+            // FAQ
             const faqModal = document.getElementById('faq-modal');
             const faqLink = document.getElementById('faq-link');
             const faqLinkFooter = document.getElementById('faq-link-footer');
             const faqContent = document.getElementById('faq-content');
-            
-            // Care Modal
+
+            // Cuidado
             const careModal = document.getElementById('care-modal');
             const careLink = document.getElementById('care-link');
             const careLinkFooter = document.getElementById('care-link-footer');
             const careContent = document.getElementById('care-content');
-            
-            // Close buttons
+
             const closeButtons = document.querySelectorAll('.close');
-            
-            // Abrir modal de FAQ
+
             function openFaqModal() {
                 faqModal.style.display = 'block';
+                faqModal.setAttribute('aria-hidden', 'false');
                 loadGoogleDocContent('1iruIpkECzwqgb4EzxI9CPvQNAb9hjASF01zoljx7OM8', 'faq-content');
             }
-            
-            // Abrir modal de Cuidado
+
             function openCareModal() {
                 careModal.style.display = 'block';
+                careModal.setAttribute('aria-hidden', 'false');
                 loadGoogleDocContent('1dvoySXBMB69YKcTIbuywr0rDBozAUjiseTLUY5DCsWA', 'care-content');
             }
-            
-            // Cerrar modales
+
             function closeModals() {
                 faqModal.style.display = 'none';
+                faqModal.setAttribute('aria-hidden', 'true');
                 careModal.style.display = 'none';
+                careModal.setAttribute('aria-hidden', 'true');
             }
-            
-            // Event listeners
-            faqLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                openFaqModal();
+
+            faqLink.addEventListener('click', (e) => { e.preventDefault(); openFaqModal(); });
+            faqLinkFooter.addEventListener('click', (e) => { e.preventDefault(); openFaqModal(); });
+
+            careLink.addEventListener('click', (e) => { e.preventDefault(); openCareModal(); });
+            careLinkFooter.addEventListener('click', (e) => { e.preventDefault(); openCareModal(); });
+
+            closeButtons.forEach(btn => btn.addEventListener('click', closeModals));
+
+            window.addEventListener('click', (e) => {
+                if (e.target === faqModal || e.target === careModal) closeModals();
             });
-            
-            faqLinkFooter.addEventListener('click', function(e) {
-                e.preventDefault();
-                openFaqModal();
-            });
-            
-            careLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                openCareModal();
-            });
-            
-            careLinkFooter.addEventListener('click', function(e) {
-                e.preventDefault();
-                openCareModal();
-            });
-            
-            closeButtons.forEach(button => {
-                button.addEventListener('click', closeModals);
-            });
-            
-            // Cerrar al hacer clic fuera del contenido
-            window.addEventListener('click', function(e) {
-                if (e.target === faqModal) {
-                    closeModals();
-                }
-                if (e.target === careModal) {
-                    closeModals();
-                }
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModals();
             });
         }
-        
-        // Cargar los productos cuando la página esté lista
+
+        // ========= INIT =========
         document.addEventListener('DOMContentLoaded', function() {
+            // Año dinámico
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Carga de productos desde Google Sheets
             loadProductsFromGoogleSheets();
+
+            // Modales (FAQ/Cuidado)
             setupModals();
         });
     </script>
