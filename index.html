@@ -243,6 +243,8 @@
             text-align: center;
             margin-bottom: 50px;
             position: relative;
+            font-size: 2.2rem;
+            color: var(--color-primary);
         }
         
         .section-title::after {
@@ -544,6 +546,12 @@
             display: none;
         }
         
+        /* Logo image */
+        .logo-img {
+            max-height: 70px;
+            width: auto;
+        }
+        
         /* Responsive Design */
         @media (max-width: 900px) {
             .hero {
@@ -587,6 +595,10 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .logo-img {
+                max-height: 50px;
+            }
         }
     </style>
 </head>
@@ -599,7 +611,9 @@
         
         <div class="main-header">
             <div class="logo-container">
-                <a href="#" class="logo">VA<span>MATEANDO</span></a>
+                <a href="#">
+                    <img src="https://drive.google.com/uc?export=view&id=18zHguJr7LBkO4Jh6moTCu_x-AGTkFmVX" alt="Vamateando" class="logo-img">
+                </a>
             </div>
             
             <div class="header-icons">
@@ -623,11 +637,9 @@
                             <a href="#">Combos</a>
                         </div>
                     </li>
-                    <li><a href="#">PEDÍ TU PERSONALIZADO</a></li>
-                    <li><a href="#">REGALOS EMPRESARIALES</a></li>
-                    <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-                    <li><a href="#">CURADO Y CUIDADO</a></li>
-                    <li><a href="#">CONTACTO</a></li>
+                    <li><a href="#" id="faq-link">PREGUNTAS FRECUENTES</a></li>
+                    <li><a href="#" id="care-link">CURADO Y CUIDADO</a></li>
+                    <li><a href="#contact">CONTACTO</a></li>
                 </ul>
             </div>
         </nav>
@@ -692,18 +704,34 @@
             </div>
         </div>
     </section>
+
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000; overflow: auto;">
+        <div class="modal-content" style="background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 800px; border-radius: 10px;">
+            <span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">PREGUNTAS FRECUENTES</h2>
+            <div id="faq-content" style="max-height: 70vh; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Care Modal -->
+    <div id="care-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000; overflow: auto;">
+        <div class="modal-content" style="background-color: #fefefe; margin: 5% auto; padding: 30px; border: 1px solid #888; width: 80%; max-width: 800px; border-radius: 10px;">
+            <span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 style="color: var(--color-primary); margin-bottom: 20px;">CURADO Y CUIDADO DE MATES</h2>
+            <div id="care-content" style="max-height: 70vh; overflow-y: auto;"></div>
+        </div>
+    </div>
     
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="footer-grid">
             <div class="footer-column">
                 <h3>VA<span>MATEANDO</span></h3>
                 <p>Mates artesanales de alta calidad, elaborados con maderas nobles y técnicas tradicionales que garantizan durabilidad y belleza.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="https://www.instagram.com/vamateando/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5491138622851" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             
@@ -712,11 +740,9 @@
                 <ul class="footer-menu">
                     <li><a href="#">INICIO</a></li>
                     <li><a href="#">PRODUCTOS</a></li>
-                    <li><a href="#">PEDÍ TU PERSONALIZADO</a></li>
-                    <li><a href="#">REGALOS EMPRESARIALES</a></li>
-                    <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-                    <li><a href="#">CURADO Y CUIDADO</a></li>
-                    <li><a href="#">CONTACTO</a></li>
+                    <li><a href="#" id="faq-link-footer">PREGUNTAS FRECUENTES</a></li>
+                    <li><a href="#" id="care-link-footer">CURADO Y CUIDADO</a></li>
+                    <li><a href="#contact">CONTACTO</a></li>
                 </ul>
             </div>
             
@@ -733,10 +759,9 @@
             <div class="footer-column">
                 <h3>CONTACTANOS</h3>
                 <ul class="contact-info">
-                    <li><i class="fas fa-phone"></i> +54 9 11 2345-6789</li>
-                    <li><i class="fab fa-whatsapp"></i> +54 9 11 2345-6789</li>
+                    <li><i class="fas fa-phone"></i> +54 9 11 3862-2851</li>
+                    <li><i class="fab fa-whatsapp"></i> +54 9 11 3862-2851</li>
                     <li><i class="fas fa-envelope"></i> info@vamateando.com.ar</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Av. Corrientes 1234, Buenos Aires, Argentina</li>
                 </ul>
             </div>
         </div>
@@ -753,6 +778,24 @@
         // Lista de posibles nombres de hoja (intentará en este orden)
         const possibleSheetNames = ['Sheet1', 'Hoja 1', 'Productos', 'Datos', 'Hoja de cálculo 1'];
         
+        // Función para convertir enlaces de Google Drive a enlaces directos
+        function convertGoogleDriveLink(url) {
+            if (!url) return 'https://via.placeholder.com/300x300?text=Imagen+no+disponible';
+            
+            // Si ya es un enlace directo o no es de Google Drive, devolverlo tal cual
+            if (url.includes('via.placeholder.com') || !url.includes('drive.google.com')) {
+                return url;
+            }
+            
+            // Convertir enlaces de Google Drive a enlaces directos
+            if (url.includes('/file/d/')) {
+                const fileId = url.match(/\/file\/d\/([^\/]+)/)[1];
+                return `https://drive.google.com/uc?export=view&id=${fileId}`;
+            }
+            
+            return url;
+        }
+
         // Función para cargar productos desde Google Sheets
         function loadProductsFromGoogleSheets(sheetIndex = 0) {
             // Obtener el nombre de la hoja a intentar
@@ -837,7 +880,7 @@
                 const name = product['Nombre del producto'] || product['Nombre'] || product['Producto'] || 'Producto sin nombre';
                 const price = parseFloat(product['Precio']) || parseFloat(product['Precio ($)']) || 0;
                 const description = product['Descripción'] || product['Descripcion'] || '';
-                const imageUrl = product['Enlace de imagen'] || product['Imagen'] || product['URL de imagen'] || 'https://via.placeholder.com/300x300?text=Imagen+no+disponible';
+                const imageUrl = convertGoogleDriveLink(product['Enlace de imagen'] || product['Imagen'] || product['URL de imagen'] || '');
                 const stock = parseInt(product['Stock disponible']) || parseInt(product['Stock']) || 0;
                 
                 // Validar datos mínimos para mostrar el producto
@@ -905,10 +948,103 @@
                 `;
             }
         }
+
+        // Función para cargar contenido desde Google Docs
+        async function loadGoogleDocContent(docId, elementId) {
+            try {
+                // Usar un proxy CORS para evitar problemas
+                const response = await fetch(`https://cors-anywhere.herokuapp.com/https://docs.google.com/document/d/${docId}/export?format=txt`);
+                
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el documento');
+                }
+                
+                const content = await response.text();
+                document.getElementById(elementId).innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${content}</pre>`;
+            } catch (error) {
+                console.error('Error al cargar el documento:', error);
+                document.getElementById(elementId).innerHTML = `
+                    <p>Error al cargar el contenido. Por favor, intenta nuevamente más tarde.</p>
+                    <p>También puedes ver el documento directamente <a href="https://docs.google.com/document/d/${docId}/edit" target="_blank">aquí</a>.</p>
+                `;
+            }
+        }
+
+        // Función para mostrar modales
+        function setupModals() {
+            // FAQ Modal
+            const faqModal = document.getElementById('faq-modal');
+            const faqLink = document.getElementById('faq-link');
+            const faqLinkFooter = document.getElementById('faq-link-footer');
+            const faqContent = document.getElementById('faq-content');
+            
+            // Care Modal
+            const careModal = document.getElementById('care-modal');
+            const careLink = document.getElementById('care-link');
+            const careLinkFooter = document.getElementById('care-link-footer');
+            const careContent = document.getElementById('care-content');
+            
+            // Close buttons
+            const closeButtons = document.querySelectorAll('.close');
+            
+            // Abrir modal de FAQ
+            function openFaqModal() {
+                faqModal.style.display = 'block';
+                loadGoogleDocContent('1iruIpkECzwqgb4EzxI9CPvQNAb9hjASF01zoljx7OM8', 'faq-content');
+            }
+            
+            // Abrir modal de Cuidado
+            function openCareModal() {
+                careModal.style.display = 'block';
+                loadGoogleDocContent('1dvoySXBMB69YKcTIbuywr0rDBozAUjiseTLUY5DCsWA', 'care-content');
+            }
+            
+            // Cerrar modales
+            function closeModals() {
+                faqModal.style.display = 'none';
+                careModal.style.display = 'none';
+            }
+            
+            // Event listeners
+            faqLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                openFaqModal();
+            });
+            
+            faqLinkFooter.addEventListener('click', function(e) {
+                e.preventDefault();
+                openFaqModal();
+            });
+            
+            careLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCareModal();
+            });
+            
+            careLinkFooter.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCareModal();
+            });
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', closeModals);
+            });
+            
+            // Cerrar al hacer clic fuera del contenido
+            window.addEventListener('click', function(e) {
+                if (e.target === faqModal) {
+                    closeModals();
+                }
+                if (e.target === careModal) {
+                    closeModals();
+                }
+            });
+        }
         
         // Cargar los productos cuando la página esté lista
         document.addEventListener('DOMContentLoaded', function() {
             loadProductsFromGoogleSheets();
+            setupModals();
         });
     </script>
 </body>
